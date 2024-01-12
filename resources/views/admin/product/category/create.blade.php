@@ -25,44 +25,44 @@
 
                         <div class="col-md-6">
                             <div class="card mb-4">
-                                <h5 class="card-header">Create why choose us card</h5>
+                                <h5 class="card-header">Create a category</h5>
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('admin.why-choose-us.store') }}">
+                                    <form method="POST" action="{{ route('admin.category.store') }}">
                                         @csrf
 
 
 
-                                        <div class="mb-3">
-                                            <label for="icon" class="form-label">Icon</label>
-                                            <input class="form-control" type="text" id="icon" name="icon">
-
-
-                                            {{-- TODO: IconPicker --}}
-
-
-
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="title" class="form-label">Title</label>
-                                            <input class="form-control" type="text" id="title" name="title">
-                                        </div>
-
 
                                         <div class="mb-3">
-                                            <label for="short_desc" class="form-label">Description</label>
-                                            <textarea class="form-control" id="short_desc" name="short_desc" rows="3"></textarea>
+                                            <label for="name" class="form-label">Name</label>
+                                            <input class="form-control" type="text" id="name" name="name">
                                         </div>
 
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlSelect1" class="form-label">Show At Home</label>
+                                            <select class="form-select" id="show_at-home" name="show_at_home"
+                                                aria-label="Default select status">
+
+                                                <option value="1">Yes</option>
+                                                <option selected value="0">No</option>
+                                            </select>
+                                        </div>
 
                                         <div class="mb-3">
                                             <label for="exampleFormControlSelect1" class="form-label">Status</label>
                                             <select class="form-select" id="status" name="status"
                                                 aria-label="Default select status">
 
-                                                <option value="1">Yes</option>
-                                                <option value="0">No</option>
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
                                             </select>
                                         </div>
+
+
+
+
+
+
 
 
                                         <button class="btn btn-primary btn-section-block waves-effect waves-light"

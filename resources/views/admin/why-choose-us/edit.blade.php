@@ -25,16 +25,19 @@
 
                         <div class="col-md-6">
                             <div class="card mb-4">
-                                <h5 class="card-header">Create why choose us card</h5>
+                                <h5 class="card-header">Edit why choose us card</h5>
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('admin.why-choose-us.store') }}">
+                                    <form method="POST"
+                                        action="{{ route('admin.why-choose-us.update', $whyChooseData->id) }}">
                                         @csrf
+                                        @method('PUT')
 
 
 
                                         <div class="mb-3">
                                             <label for="icon" class="form-label">Icon</label>
-                                            <input class="form-control" type="text" id="icon" name="icon">
+                                            <input class="form-control" type="text" id="icon" name="icon"
+                                                value="{{ $whyChooseData->icon }}">
 
 
                                             {{-- TODO: IconPicker --}}
@@ -44,13 +47,14 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="title" class="form-label">Title</label>
-                                            <input class="form-control" type="text" id="title" name="title">
+                                            <input class="form-control" type="text" id="title" name="title"
+                                                value="{{ $whyChooseData->title }}">
                                         </div>
 
 
                                         <div class="mb-3">
                                             <label for="short_desc" class="form-label">Description</label>
-                                            <textarea class="form-control" id="short_desc" name="short_desc" rows="3"></textarea>
+                                            <textarea class="form-control" id="short_desc" name="short_desc" rows="3">{{ $whyChooseData->short_desc }}</textarea>
                                         </div>
 
 
@@ -59,14 +63,14 @@
                                             <select class="form-select" id="status" name="status"
                                                 aria-label="Default select status">
 
-                                                <option value="1">Yes</option>
-                                                <option value="0">No</option>
+                                                <option @selected($whyChooseData->status === 1) value="1">Active</option>
+                                                <option @selected($whyChooseData->status === 0) value="0">Inactive</option>
                                             </select>
                                         </div>
 
 
                                         <button class="btn btn-primary btn-section-block waves-effect waves-light"
-                                            type="submit">Create</button>
+                                            type="submit">Update</button>
                                     </form>
 
                                 </div>

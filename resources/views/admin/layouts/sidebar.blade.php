@@ -64,13 +64,12 @@
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-file-dollar"></i>
-                <div data-i18n="Invoice">Invoice</div>
-                <div class="badge bg-label-danger rounded-pill ms-auto">4</div>
+                <div data-i18n="Manage Restaurant">Manage Restaurant</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="app-invoice-list.html" class="menu-link">
-                        <div data-i18n="List">List</div>
+                    <a href="{{ route('admin.category.index') }}" class="menu-link">
+                        <div data-i18n="Categories">Categories</div>
                     </a>
                 </li>
                 <li class="menu-item">
