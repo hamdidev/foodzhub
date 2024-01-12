@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryCreateRequest;
+use App\Http\Requests\Admin\CategoryUpdateRequest;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -62,7 +63,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryCreateRequest $request, string $id)
+    public function update(CategoryUpdateRequest $request, string $id)
     {
         $category = Category::findOrFail($id);
         $category->name = $request->name;
