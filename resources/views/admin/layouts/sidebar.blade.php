@@ -73,8 +73,8 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="app-invoice-preview.html" class="menu-link">
-                        <div data-i18n="Preview">Preview</div>
+                    <a href="{{ route('admin.product.index') }}" class="menu-link">
+                        <div data-i18n="Products">Products</div>
                     </a>
                 </li>
                 <li class="menu-item">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('why-choose-us', WhyChooseUsController::class);
     // Category routes
     Route::resource('category', CategoryController::class);
+    // Product routes
+    Route::resource('product', ProductController::class);
 });

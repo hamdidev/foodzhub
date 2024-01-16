@@ -31,8 +31,7 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/vendor/css/rtl/core.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/vendor/css/rtl/theme-default.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/demo.css') }}" />
-    {{-- <link rel="stylesheet" href="{{ asset('backend/assets/css/iconpicker-1.5.0.css') }}" /> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('backend/assets/css/all.min.css') }}" /> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('backend/assets/css/summernote-bs4.min.css') }}" /> --}}
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
@@ -40,6 +39,14 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/typeahead-js/typeahead.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    {{-- <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/select2/select2.css') }}" /> --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/quill/typography.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/quill/katex.css') }}" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/quill/editor.css') }}" /> --}}
 
     <!-- Page CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
@@ -52,6 +59,8 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('backend/assets/js/config.js') }}"></script>
+    <script src="https://cdn.tiny.cloud/1/ue5aleixkwmt1386lcwsk6stn7ndue85sx70w42sqw1c7pf9/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
 </head>
 
 <body>
@@ -95,6 +104,7 @@
     <!-- / Layout wrapper -->
 
     <!-- Core JS -->
+    {{-- <script src="{{ asset('backend/assets/vendor/libs/select2/select2.js') }}"></script> --}}
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('backend/assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/libs/popper/popper.js') }}"></script>
@@ -113,6 +123,12 @@
 
     <!-- Vendors JS -->
     <script src="{{ asset('backend/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('backend/assets/js/select2-custom.js') }}"></script>
+    {{-- <script src="{{ asset('backend/assets/js/summernote-bs4.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/assets/vendor/libs/quill/katex.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/quill/quill.js') }}"></script> --}}
 
     <!-- Main JS -->
     <script src="{{ asset('backend/assets/js/main.js') }}"></script>
