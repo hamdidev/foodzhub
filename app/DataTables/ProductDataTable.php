@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class ProductDataTable extends DataTable
@@ -30,13 +28,8 @@ class ProductDataTable extends DataTable
                   <i class="ti ti-dots-vertical"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" style="">
-                  <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+                  <li><a class="dropdown-item" href="' . route('admin.product-gallery.show-index', $query->id) . '">Gallery</a></li>
+
                 </ul>
               </div>';
                 return $edit . $delete . $more;

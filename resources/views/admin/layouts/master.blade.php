@@ -39,15 +39,22 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/typeahead-js/typeahead.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-    {{-- <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/select2/select2.css') }}" /> --}}
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"> --}}
+    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('backend/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('backend/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('backend/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/quill/typography.css') }}" />
-    {{-- <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/quill/katex.css') }}" />
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/quill/editor.css') }}" /> --}}
+    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/dropzone/dropzone.css') }}" />
 
+    <link rel="stylesheet"
+        href="{{ asset('backend/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}" />
     <!-- Page CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
@@ -126,28 +133,42 @@
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('backend/assets/js/select2-custom.js') }}"></script>
-    {{-- <script src="{{ asset('backend/assets/js/summernote-bs4.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('backend/assets/vendor/libs/quill/katex.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendor/libs/quill/quill.js') }}"></script> --}}
+    <script src="{{ asset('backend/assets/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/datatables-responsive/datatables.responsive.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/datatables-buttons/datatables-buttons.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js') }}"></script>
+
+    <script src="{{ asset('backend/assets/vendor/libs/datatables-buttons/buttons.html5.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/datatables-buttons/buttons.print.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/datatables-rowgroup/datatables.rowgroup.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.js') }}"></script>
 
     <!-- Main JS -->
     <script src="{{ asset('backend/assets/js/main.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/forms-file-upload.js') }}"></script>
+
 
     <!-- Page JS -->
     <script src="{{ asset('backend/assets/js/dashboards-crm.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
-    <script>
+
+    {{-- <script>
         const input = document.querySelector("#phone");
         window.intlTelInput(input, {
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
         });
-    </script>
+    </script> --}}
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+
     <script>
         @if ($errors->any)
             @foreach ($errors->all() as $error)
