@@ -91,7 +91,6 @@ class ProductController extends Controller
         $imagePath = $this->handleFileUpload($request, 'thumbnail_img', $product->thumbnail_img);
         $product->thumbnail_img = !empty($imagePath) ? $imagePath : $product->thumbnail_img;
         $product->name = $request->name;
-        $product->slug = generateUniqueSlug('Product', $request->name);
         $product->sku = $request->sku;
         $product->price = $request->price;
         $product->offer_price = $request->offer_price;

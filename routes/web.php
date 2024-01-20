@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [FrontendController::class, 'index'])->name('home');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::put('update-profile', [UserProfileController::class, 'UserProfileUpdate'])->name('user.profile.update');
@@ -43,3 +43,8 @@ Route::get('/auth/{provider}/callback', [GoogleProviderController::class, 'callb
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/admin/login', [AdminDashboardController::class, 'AdminLogin'])->name('admin.login');
 });
+
+// Frontend Routes
+
+Route::get('/', [FrontendController::class, 'index'])->name('home');
+Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
