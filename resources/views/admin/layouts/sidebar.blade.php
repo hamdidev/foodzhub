@@ -89,6 +89,16 @@
                 </li>
             </ul>
         </li>
+
+        <li class="menu-item active open">
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.settings') }}" class="menu-link">
+                        <div data-i18n="Settings">Settings</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-users"></i>
@@ -137,7 +147,7 @@
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-settings"></i>
-                <div data-i18n="Roles & Permissions">Roles & Permissions</div>
+                <div data-i18n="Settings">Settings</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">

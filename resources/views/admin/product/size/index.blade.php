@@ -49,7 +49,6 @@
 
                                     <label for="price" class="form-label">Price</label>
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text">$</span>
                                         <input type="number" class="form-control" placeholder="Price"
                                             aria-label="Amount (to the nearest dollar)" min="0" name="price"
                                             value="">
@@ -126,7 +125,7 @@
 
                                                     <td>{{ ++$loop->index }}</td>
                                                     <td>{{ $size->name }}</td>
-                                                    <td>{{ $size->price }}</td>
+                                                    <td>{{ currencyPosition($size->price) }}</td>
                                                     <td>
                                                         <a href='{{ route('admin.product-size.destroy', $size->id) }}'
                                                             class='btn btn-danger delete-item ms-2'><i
@@ -197,7 +196,6 @@
 
                                     <label for="price" class="form-label">Price</label>
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text">$</span>
                                         <input type="number" class="form-control" placeholder="Price"
                                             aria-label="Amount (to the nearest dollar)" min="0" name="price"
                                             value="">
@@ -275,7 +273,7 @@
 
                                                     <td>{{ ++$loop->index }}</td>
                                                     <td>{{ $option->name }}</td>
-                                                    <td>{{ $option->price }}</td>
+                                                    <td>{{ currencyPosition($option->price) }}</td>
                                                     <td>
                                                         <a href='{{ route('admin.product-option.destroy', $option->id) }}'
                                                             class='btn btn-danger delete-item ms-2'><i

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\ProductOptionsController;
 use App\Http\Controllers\Admin\ProductSizesController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Models\ProductGallery;
@@ -42,4 +43,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     // Route::get('product-option/{product}', [ProductOptionsController::class, 'index'])->name('product-option.show-index');
 
     Route::resource('product-option', ProductOptionsController::class);
+
+
+    // Settings routes
+    Route::get('settings', [SettingsController::class, 'index'])->name('settings');
+    Route::put('general-settings', [SettingsController::class, 'updateGeneralSettings'])->name('general-settings.update');
 });

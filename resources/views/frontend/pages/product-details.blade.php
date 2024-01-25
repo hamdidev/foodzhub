@@ -1,8 +1,8 @@
 @extends('frontend.layouts.master')
 @section('content')
     <!--=============================
-                                                                                                                                                        BREADCRUMB START
-                                                                                                                                                    ==============================-->
+                                                                                                                                                                                                                                                                                    BREADCRUMB START
+                                                                                                                                                                                                                                                                                ==============================-->
     <section class="fp__breadcrumb" style="background: url('{{ asset('frontend/assets/images/counter_bg.jpg') }}');">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
@@ -17,13 +17,13 @@
         </div>
     </section>
     <!--=============================
-                                                                                                                                                        BREADCRUMB END
-                                                                                                                                                    ==============================-->
+                                                                                                                                                                                                                                                                                    BREADCRUMB END
+                                                                                                                                                                                                                                                                                ==============================-->
 
 
     <!--=============================
-                                                                                                                                                        MENU DETAILS START
-                                                                                                                                                    ==============================-->
+                                                                                                                                                                                                                                                                                    MENU DETAILS START
+                                                                                                                                                                                                                                                                                ==============================-->
     <section class="fp__menu_details mt_115 xs_mt_85 mb_95 xs_mb_65">
         <div class="container">
             <div class="row">
@@ -63,60 +63,77 @@
                         </p>
                         <h3 class="price">
                             @if ($product->offer_price > 0)
-                                ${{ $product->offer_price }}
-                                <del>${{ $product->price }}</del>
+                                {{ currencyPosition($product->offer_price) }}
+                                <del>{{ currencyPosition($product->price) }}</del>
                             @else
-                                ${{ $product->price }}
+                                {{ currencyPosition($product->price) }}
                             @endif
                         </h3>
                         <p class="short_description">{!! $product->short_desc !!}</p>
-                        @if ($product->productSizes()->exists())
-                            <div class="details_size">
-                                <h5>select size</h5>
-                                <div class="form-check">
-                                    @foreach ($product->productSizes as $productSize)
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="size-{{ $productSize->id }}" checked>
-                                        <label class="form-check-label" for="size-{{ $productSize->id }}">
-                                            {{ $productSize->name }} <span>+ ${{ $productSize->price }}</span>
-                                        </label>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
 
+                        <form action="" id="v_add_to_cart_form">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-
-                        @if ($product->productOptions()->exists())
-                            <div class="details_extra_item">
-                                <h5>select option <span>(optional)</span></h5>
-                                @foreach ($product->productOptions as $productOption)
+                            <input type="hidden" name="net_price" class="v_net_price"
+                                value="{{ $product->offer_price > 0 ? $product->offer_price : $product->price }}">
+                            @if ($product->productSizes()->exists())
+                                <div class="details_size">
+                                    <h5>select size</h5>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="option-{{ $productOption->id }}">
-                                        <label class="form-check-label" for="option-{{ $productOption->id }}">
-                                            {{ $productOption->name }} <span>+ ${{ $productOption->price }}</span>
-                                        </label>
+                                        @foreach ($product->productSizes as $productSize)
+                                            <input class="form-check-input v_product_size" type="radio"
+                                                name="product_size" id="size-{{ $productSize->id }}"
+                                                data-price="{{ $productSize->price }}" value="{{ $productSize->id }}">
+                                            <label class="form-check-label" for="size-{{ $productSize->id }}">
+                                                {{ $productSize->name }} <span>+
+                                                    {{ currencyPosition($productSize->price) }}</span>
+                                            </label>
+                                        @endforeach
                                     </div>
-                                @endforeach
-
-                            </div>
-                        @endif
-
-                        <div class="details_quentity">
-                            <h5>select quentity</h5>
-                            <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
-                                <div class="quentity_btn">
-                                    <button class="btn btn-danger"><i class="fal fa-minus"></i></button>
-                                    <input type="text" placeholder="1">
-                                    <button class="btn btn-success"><i class="fal fa-plus"></i></button>
                                 </div>
-                                <h3>$320.00</h3>
+                            @endif
+
+
+
+                            @if ($product->productOptions()->exists())
+                                <div class="details_extra_item">
+                                    <h5>select option <span>(optional)</span></h5>
+                                    @foreach ($product->productOptions as $productOption)
+                                        <div class="form-check">
+                                            <input class="form-check-input v_product_option" name="product_option[]"
+                                                type="checkbox" value="{{ $productOption->id }}"
+                                                id="option-{{ $productOption->id }}"
+                                                data-price="{{ $productOption->price }}">
+                                            <label class="form-check-label" for="option-{{ $productOption->id }}">
+                                                {{ $productOption->name }} <span>+
+                                                    {{ currencyPosition($productOption->price) }}</span>
+                                            </label>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            @endif
+
+                            <div class="details_quentity">
+                                <h5>select quentity</h5>
+                                <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
+                                    <div class="quentity_btn">
+                                        <button class="btn btn-danger v_decrease"><i class="fal fa-minus"></i></button>
+                                        <input type="text" name="quantity" placeholder="1" value="1" readonly
+                                            id="v_quantity">
+                                        <button class="btn btn-success v_increase"><i class="fal fa-plus"></i></button>
+                                    </div>
+                                    <h3 id="v_total_price">
+                                        {{ currencyPosition($product->offer_price > 0 ? $product->offer_price : $product->price) }}
+                                    </h3>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
                         <ul class="details_button_area d-flex flex-wrap">
-                            <li><a class="common_btn" href="#">add to cart</a></li>
-                            <li><a class="wishlist" href="#"><i class="far fa-heart"></i></a></li>
+                            <li><a href="#" class="common_btn v_submit_btn">add to cart</a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -266,8 +283,7 @@
                                 <div class="fp__menu_item">
                                     <div class="fp__menu_item_img">
                                         <img src="{{ asset($relatedProduct->thumbnail_img) }}"
-                                            alt="="#">{{ $relatedProduct->name }}"
-                                        class="img-fluid w-100">
+                                            alt="{{ $relatedProduct->name }}" class="img-fluid w-100">
                                         <a class="category" href="#">{{ @$relatedProduct->category->name }}</a>
                                     </div>
                                     <div class="fp__menu_item_text">
@@ -284,14 +300,15 @@
                                         </a>
                                         <h5 class="price">
                                             @if ($relatedProduct->offer_price > 0)
-                                                ${{ $relatedProduct->offer_price }}
-                                                <del>${{ $relatedProduct->price }}</del>
+                                                {{ currencyPosition($relatedProduct->offer_price) }}
+                                                <del>{{ currencyPosition($relatedProduct->price) }}</del>
                                             @else
-                                                ${{ $relatedProduct->price }}
+                                                {{ currencyPosition($relatedProduct->price) }}
                                             @endif
                                         </h5>
                                         <ul class="d-flex flex-wrap justify-content-center">
-                                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#cartModal"><i
+                                            <li><a href="javascript:;"
+                                                    onclick="loadProductModal('{{ $relatedProduct->id }}')"><i
                                                         class="fas fa-shopping-basket"></i></a></li>
                                             <li><a href="#"><i class="fal fa-heart"></i></a></li>
                                             <li><a href="#"><i class="far fa-eye"></i></a></li>
@@ -305,89 +322,123 @@
             @endif
         </div>
     </section>
-    <!-- CART POPUT START -->
-    <div class="fp__cart_popup">
-        <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
-                                class="fal fa-times"></i></button>
-                        <div class="fp__cart_popup_img">
-                            <img src="images/menu1.png" alt="menu" class="img-fluid w-100">
-                        </div>
-                        <div class="fp__cart_popup_text">
-                            <a href="#" class="title">Maxican Pizza Test Better</a>
-                            <p class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <i class="far fa-star"></i>
-                                <span>(201)</span>
-                            </p>
-                            <h4 class="price">$320.00 <del>$350.00</del> </h4>
 
-                            <div class="details_size">
-                                <h5>select size</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="large01" checked>
-                                    <label class="form-check-label" for="large01">
-                                        large <span>+ $350</span>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="medium01">
-                                    <label class="form-check-label" for="medium01">
-                                        medium <span>+ $250</span>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="small01">
-                                    <label class="form-check-label" for="small01">
-                                        small <span>+ $150</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="details_extra_item">
-                                <h5>select option <span>(optional)</span></h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="coca-cola01">
-                                    <label class="form-check-label" for="coca-cola01">
-                                        coca-cola <span>+ $10</span>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="7up01">
-                                    <label class="form-check-label" for="7up01">
-                                        7up <span>+ $15</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="details_quentity">
-                                <h5>select quentity</h5>
-                                <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
-                                    <div class="quentity_btn">
-                                        <button class="btn btn-danger"><i class="fal fa-minus"></i></button>
-                                        <input type="text" placeholder="1">
-                                        <button class="btn btn-success"><i class="fal fa-plus"></i></button>
-                                    </div>
-                                    <h3>$320.00</h3>
-                                </div>
-                            </div>
-                            <ul class="details_button_area d-flex flex-wrap">
-                                <li><a class="common_btn" href="#">add to cart</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- CART POPUT END -->
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.v_product_size').prop('checked', false);
+            $('.v_product_option').prop('checked', false);
+            $('#v_quantity').val(1);
+
+            $('.v_product_size').on('change', function() {
+                v_updateTotalPrice();
+            })
+
+            $('.v_product_option').on('change', function() {
+                v_updateTotalPrice();
+            })
+            $('.v_increase').on('click', function(e) {
+                e.preventDefault();
+
+                let quantity = $('#v_quantity');
+                let currentQty = parseFloat(quantity.val());
+                quantity.val(currentQty + 1);
+                v_updateTotalPrice()
+            })
+
+            $('.v_decrease').on('click', function(e) {
+                e.preventDefault();
+
+                let quantity = $('#v_quantity');
+                let currentQty = parseFloat(quantity.val());
+                if (currentQty > 1) {
+
+                    quantity.val(currentQty - 1);
+                }
+                v_updateTotalPrice()
+            })
+
+            function v_updateTotalPrice() {
+                let netPrice = parseFloat($('.v_net_price').val());
+                let selectedSizePrice = 0;
+                let selectedOptionsPrice = 0;
+                let Qyt = parseFloat($('#v_quantity').val());
+
+                // select size price
+                let selectedSize = $('.v_product_size:checked')
+                if (selectedSize.length > 0) {
+                    selectedSizePrice = parseFloat(selectedSize.data("price"));
+                }
+                // select options price
+
+                let selectedOptions = $('.v_product_option:checked')
+                $(selectedOptions).each(function() {
+                    selectedOptionsPrice += parseFloat($(this).data('price'))
+
+                })
+                // total price
+
+                let totalPrice = (netPrice + selectedSizePrice + selectedOptionsPrice) * Qyt;
+                $('#v_total_price').text("{{ config('settings.currency_icon') }}" + totalPrice)
+
+
+            }
+            // Add to cart
+            $('.v_submit_btn').on('click', function(e) {
+                e.preventDefault();
+                $('#v_add_to_cart_form').submit();
+
+            })
+
+            $('#v_add_to_cart_form').on('submit', function(e) {
+                e.preventDefault();
+
+                let selectedSize = $('.v_product_size');
+
+                if (selectedSize.length > 0) {
+                    if ($(".v_product_size:checked").val() === undefined) {
+
+                        toastr.error('Please select a size.');
+                        console.log('Please select a size.');
+                        return;
+                    }
+                }
+
+
+
+                let formData = $(this).serialize();
+                $.ajax({
+                    url: "{{ route('add-to-cart') }}",
+                    type: 'POST',
+                    data: formData,
+                    beforeSend: function() {
+                        $('.v_submit_btn').attr('disabled', true),
+                            $('.v_submit_btn').html(
+                                '<span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span> Adding...'
+                            )
+                    },
+
+
+                    success: function(data) {
+                        updateSidebarCart();
+                        toastr.success(data.message);
+                    },
+
+                    error: function(xhr, status, error) {
+                        let errorMsg = xhr.responseJSON.message;
+                        toastr.error(errorMsg);
+
+                    },
+                    complete: function() {
+                        $('.v_submit_btn').html('Add to Cart');
+                        $('.v_submit_btn').attr('disabled', false);
+
+                    }
+                });
+
+            })
+        })
+    </script>
+@endpush

@@ -219,6 +219,7 @@
             })
         })
     </script>
+    {{-- global scripts --}}
     @stack('scripts')
 </body>
 

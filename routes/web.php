@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Auth\GoogleProviderController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\UserProfileController;
@@ -48,3 +49,10 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
+
+// Product modal route
+Route::get('/load-product-modal/{productId}', [FrontendController::class, 'loadProductModal'])->name('load-product-modal');
+
+Route::post('/add-to-cart', [CartController::class, 'AddToCart'])->name('add-to-cart');
+Route::get('/get-cart-products', [CartController::class, 'getCartProducts'])->name('get-cart-products');
+Route::get('/remove-cart-product\{rowId}', [CartController::class, 'removeCartProduct'])->name('remove-cart-product');
