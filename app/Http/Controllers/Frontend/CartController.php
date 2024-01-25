@@ -7,6 +7,7 @@ use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class CartController extends Controller
 {
@@ -68,5 +69,26 @@ class CartController extends Controller
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => 'Something went wrong.'], 500);
         }
+    }
+
+    function index(): View
+    {
+        return view('frontend.pages.cart-view');
+    }
+
+    function cartQtyUpdate(Request $request)
+    {
+        try {
+
+            Cart::update($request->rowId, $request->qty);
+            return response(['product_total' => productTotalPrice($request->rowId)], 200);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => 'Something went wrong.'], 500);
+        }
+    }
+    function cartDestroy()
+    {
+        Cart::destroy();
+        return redirect()->back();
     }
 }

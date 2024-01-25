@@ -56,3 +56,8 @@ Route::get('/load-product-modal/{productId}', [FrontendController::class, 'loadP
 Route::post('/add-to-cart', [CartController::class, 'AddToCart'])->name('add-to-cart');
 Route::get('/get-cart-products', [CartController::class, 'getCartProducts'])->name('get-cart-products');
 Route::get('/remove-cart-product\{rowId}', [CartController::class, 'removeCartProduct'])->name('remove-cart-product');
+
+// Cart routes
+Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('cart-update-quantity', [CartController::class, 'cartQtyUpdate'])->name('cart.update-quantity');
+Route::get('cart-destroy', [CartController::class, 'cartDestroy'])->name('cart.destroy');

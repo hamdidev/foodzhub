@@ -1,4 +1,19 @@
 <script>
+    // Show loader
+    function showLoader() {
+        $('.overlay-container').removeClass('d-none');
+        $('.overlay').addClass('active');
+
+    };
+
+    // Hideloader
+    function hideLoader() {
+        $('.overlay').removeClass('active');
+        $('.overlay-container').addClass('d-none');
+
+    };
+
+
     // load product modal
     function loadProductModal($productId) {
         $.ajax({
@@ -63,8 +78,7 @@
             method: 'GET',
             url: '{{ route('remove-cart-product', ':rowId') }}'.replace(':rowId', $rowId),
             beforeSend: function() {
-                $('.overlay-container').removeClass('d-none');
-                $('.overlay').addClass('active');
+                showLoader();
             },
 
             success: function(response) {
@@ -72,8 +86,7 @@
                     updateSidebarCart(function() {
 
                         toastr.success(response.message);
-                        $('.overlay').removeClass('active');
-                        $('.overlay-container').addClass('d-none');
+                        hideLoader();
                     })
                 }
             },
